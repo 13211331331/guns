@@ -17,6 +17,7 @@ import com.stylefeng.guns.modular.system.dao.MenuDao;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +37,9 @@ import static com.stylefeng.guns.core.support.HttpKit.getIp;
 public class LoginController extends BaseController {
 
     @Autowired
+    Environment ev ;
+
+    @Autowired
     MenuDao menuDao;
 
     @Autowired
@@ -51,7 +55,7 @@ public class LoginController extends BaseController {
         if(roleList == null || roleList.size() == 0){
             ShiroKit.getSubject().logout();
             model.addAttribute("tips", "该用户没有角色，无法登陆");
-            return "/login.html";
+            return ev.getProperty("view.page.login");
         }
         List<MenuNode> menus = menuDao.getMenusByRoleIds(roleList);
         List<MenuNode> titles = MenuNode.buildTitle(menus);
@@ -74,7 +78,7 @@ public class LoginController extends BaseController {
         if (ShiroKit.isAuthenticated() || ShiroKit.getUser() != null) {
             return REDIRECT + "/";
         } else {
-            return "/login.html";
+            return ev.getProperty("view.page.login");
         }
     }
 

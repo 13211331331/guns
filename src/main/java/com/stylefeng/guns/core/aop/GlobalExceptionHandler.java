@@ -13,6 +13,8 @@ import org.apache.shiro.authc.CredentialsException;
 import org.apache.shiro.authc.DisabledAccountException;
 import org.apache.shiro.session.InvalidSessionException;
 import org.apache.shiro.session.UnknownSessionException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -38,6 +40,9 @@ public class GlobalExceptionHandler {
 
     private Logger log = Logger.getLogger(this.getClass());
 
+    @Autowired
+    Environment ev ;
+
     /**
      * 拦截业务异常
      *
@@ -62,7 +67,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public String unAuth(AuthenticationException e) {
         log.error("用户未登陆：", e);
-        return "/login.html";
+        return ev.getProperty("view.page.login");
     }
 
     /**
@@ -76,7 +81,7 @@ public class GlobalExceptionHandler {
         String username = getRequest().getParameter("username");
         LogManager.me().executeLog(LogTaskFactory.loginLog(username, "账号被冻结", getIp()));
         model.addAttribute("tips", "账号被冻结");
-        return "/login.html";
+        return ev.getProperty("view.page.login");
     }
 
     /**
@@ -90,7 +95,7 @@ public class GlobalExceptionHandler {
         String username = getRequest().getParameter("username");
         LogManager.me().executeLog(LogTaskFactory.loginLog(username, "账号密码错误", getIp()));
         model.addAttribute("tips", "账号密码错误");
-        return "/login.html";
+        return ev.getProperty("view.page.login");
     }
 
     /**
@@ -104,7 +109,7 @@ public class GlobalExceptionHandler {
         String username = getRequest().getParameter("username");
         LogManager.me().executeLog(LogTaskFactory.loginLog(username, "验证码错误", getIp()));
         model.addAttribute("tips", "验证码错误");
-        return "/login.html";
+        return ev.getProperty("view.page.login");
     }
 
     /**
@@ -147,7 +152,7 @@ public class GlobalExceptionHandler {
     public String sessionTimeout(InvalidSessionException e, Model model, HttpServletRequest request, HttpServletResponse response) {
         model.addAttribute("tips", "session超时");
         assertAjax(request, response);
-        return "/login.html";
+        return ev.getProperty("view.page.login");
     }
 
     /**
@@ -161,7 +166,7 @@ public class GlobalExceptionHandler {
     public String sessionTimeout(UnknownSessionException e, Model model, HttpServletRequest request, HttpServletResponse response) {
         model.addAttribute("tips", "session超时");
         assertAjax(request, response);
-        return "/login.html";
+        return ev.getProperty("view.page.login");
     }
 
     private void assertAjax(HttpServletRequest request, HttpServletResponse response) {

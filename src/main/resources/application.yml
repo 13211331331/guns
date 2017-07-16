@@ -30,7 +30,6 @@ spring:
   profiles:
     active: dev
   mvc:
-   ## static-path-pattern: /static/**
     view:
       prefix: /WEB-INF/view
   http:
@@ -44,6 +43,10 @@ spring:
       enabled: true #是否开启开发者工具（true/false）
       additional-paths: src/main/java
       exclude: static/**,WEB-INF/view/**
+
+view:
+  page:
+    login: /login_1.html
 
 ###################  mybatis-plus配置  ###################
 mybatis-plus:
@@ -100,4 +103,6 @@ spring:
 logging:
   level: warn
   file: logs/guns.log
+
+
 
