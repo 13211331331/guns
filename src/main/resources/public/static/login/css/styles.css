@@ -230,6 +230,9 @@ form button:hover {
     top:14px;
 }
 #tips{
+    position: relative;
+    top:10px;
+    color: #8b0000;
 
 }
 
