@@ -213,13 +213,24 @@ form button:hover {
     animation-delay: 11s;
 }
 
+#kaptcha_div{
+    height: 45px;
+    position: relative;
+    top:-15px;
+}
 #kaptcha_div input {
-    width:100px;
-    display: inline;
+    width:120px;
+    display:inline;
 }
 
 #kaptcha_div img {
-    margin: 10px;
+    margin: 0px;
+    display:inline;
+    position: relative;
+    top:14px;
+}
+#tips{
+
 }
 
 @-webkit-keyframes square {
