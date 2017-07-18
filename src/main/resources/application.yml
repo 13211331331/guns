@@ -44,9 +44,6 @@ spring:
       additional-paths: src/main/java
       exclude: static/**,WEB-INF/view/**
 
-view:
-  page:
-    login: /login_1.html
 
 ###################  mybatis-plus配置  ###################
 mybatis-plus:

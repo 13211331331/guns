@@ -66,8 +66,7 @@ public class LoginController extends BaseController {
         User user = userMapper.selectById(id);
         String avatar = user.getAvatar();
         model.addAttribute("avatar", avatar);
-
-        return "/index.html";
+        return ev.getProperty("view.page.index");
     }
 
     /**
