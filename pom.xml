@@ -34,9 +34,23 @@
         <druid.version>1.0.28</druid.version>
         <beetl.version>2.7.15</beetl.version>
         <swagger.version>2.2.2</swagger.version>
+        <xstream.version>1.4.7</xstream.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.thoughtworks.xstream</groupId>
+            <artifactId>xstream</artifactId>
+            <version>${xstream.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+
+
         <!--spring boot依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
