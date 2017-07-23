@@ -135,6 +135,7 @@ public class ShiroConfig {
         Map<String, String> hashMap = new HashMap<>();
         hashMap.put("/static/**", "anon");
         hashMap.put("/login", "anon");
+        hashMap.put("/api/**", "anon");
         hashMap.put("/global/sessionError", "anon");
         hashMap.put("/kaptcha", "anon");
         hashMap.put("/**", "user");
