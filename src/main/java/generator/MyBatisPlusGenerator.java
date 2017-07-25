@@ -28,13 +28,13 @@ public class MyBatisPlusGenerator {
 
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
-        gc.setOutputDir("D:\\ideaSpace\\guns\\src\\main\\java");//这里写你自己的java目录
+        gc.setOutputDir("D:\\code\\guns\\src\\main\\java");//这里写你自己的java目录
         gc.setFileOverride(true);//是否覆盖
         gc.setActiveRecord(true);
         gc.setEnableCache(false);// XML 二级缓存
         gc.setBaseResultMap(true);// XML ResultMap
         gc.setBaseColumnList(false);// XML columList
-        gc.setAuthor("stylefeng");
+        gc.setAuthor("HuangHanlin");
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
@@ -49,8 +49,8 @@ public class MyBatisPlusGenerator {
         });
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("root");
-        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/guns?characterEncoding=utf8");
+        dsc.setPassword("root123");
+        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/leiyy?characterEncoding=utf8");
         mpg.setDataSource(dsc);
 
         // 策略配置
@@ -65,16 +65,16 @@ public class MyBatisPlusGenerator {
         pc.setEntity("com.stylefeng.guns.common.persistence.model");
         pc.setMapper("com.stylefeng.guns.common.persistence.dao");
         pc.setXml("com.stylefeng.guns.common.persistence.dao.mapping");
-        pc.setService("TTT");       //本项目没用，生成之后删掉
-        pc.setServiceImpl("TTT");   //本项目没用，生成之后删掉
-        pc.setController("TTT");    //本项目没用，生成之后删掉
+        pc.setService("WechatPublicAccountService");       //本项目没用，生成之后删掉
+        pc.setServiceImpl("WechatPublicAccountServiceImpl");   //本项目没用，生成之后删掉
+        pc.setController("WechatPublicAccountServiceController");    //本项目没用，生成之后删掉
         mpg.setPackageInfo(pc);
 
         // 注入自定义配置，可以在 VM 中使用 cfg.abc 设置的值
         InjectionConfig cfg = new InjectionConfig() {
             @Override
             public void initMap() {
-                Map<String, Object> map = new HashMap<>();
+                Map<String, Object> map = new HashMap<String, Object>();
                 map.put("abc", this.getConfig().getGlobalConfig().getAuthor() + "-mp");
                 this.setMap(map);
             }
