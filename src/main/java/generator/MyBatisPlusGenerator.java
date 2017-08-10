@@ -55,19 +55,25 @@ public class MyBatisPlusGenerator {
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
-        //strategy.setTablePrefix(new String[]{"_"});// 此处可以修改为您的表前缀
+
+        // strategy.setCapitalMode(true);// 全局大写命名 ORACLE 注意
+       // strategy.setTablePrefix(new String[] { "tlog_", "tsys_" });// 此处可以修改为您的表前缀
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
+        strategy.setInclude(new String[] { "user" }); // 需要生成的表
+
+
+
         mpg.setStrategy(strategy);
 
         // 包配置
         PackageConfig pc = new PackageConfig();
         pc.setParent(null);
-        pc.setEntity("com.stylefeng.guns.common.persistence.model");
-        pc.setMapper("com.stylefeng.guns.common.persistence.dao");
-        pc.setXml("com.stylefeng.guns.common.persistence.dao.mapping");
-        pc.setService("WechatPublicAccountService");       //本项目没用，生成之后删掉
-        pc.setServiceImpl("WechatPublicAccountServiceImpl");   //本项目没用，生成之后删掉
-        pc.setController("WechatPublicAccountServiceController");    //本项目没用，生成之后删掉
+        pc.setEntity("cn.leiyy.common.persistence.model");
+        pc.setMapper("cn.leiyy.common.persistence.dao");
+        pc.setXml("cn.leiyy.common.persistence.dao.mapping");
+        pc.setService("service");       //本项目没用，生成之后删掉
+        pc.setServiceImpl("impl");   //本项目没用，生成之后删掉
+        pc.setController("controller");    //本项目没用，生成之后删掉
         mpg.setPackageInfo(pc);
 
         // 注入自定义配置，可以在 VM 中使用 cfg.abc 设置的值

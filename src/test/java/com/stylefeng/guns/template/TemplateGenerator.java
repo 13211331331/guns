@@ -1,8 +1,8 @@
 package com.stylefeng.guns.template;
 
-import com.stylefeng.guns.core.template.config.ContextConfig;
-import com.stylefeng.guns.core.template.engine.SimpleTemplateEngine;
-import com.stylefeng.guns.core.template.engine.base.GunsTemplateEngine;
+import cn.leiyy.core.template.config.ContextConfig;
+import cn.leiyy.core.template.engine.SimpleTemplateEngine;
+import cn.leiyy.core.template.engine.base.GunsTemplateEngine;
 
 import java.io.IOException;
 

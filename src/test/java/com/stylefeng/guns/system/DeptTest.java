@@ -1,9 +1,9 @@
 package com.stylefeng.guns.system;
 
 import com.stylefeng.guns.base.BaseJunit;
-import com.stylefeng.guns.common.persistence.dao.DeptMapper;
-import com.stylefeng.guns.common.persistence.model.Dept;
-import com.stylefeng.guns.modular.system.dao.DeptDao;
+import cn.leiyy.common.persistence.dao.DeptMapper;
+import cn.leiyy.common.persistence.model.Dept;
+import cn.leiyy.modules.system.dao.DeptDao;
 import org.junit.Test;
 
 import javax.annotation.Resource;

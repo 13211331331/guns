@@ -1,7 +1,7 @@
 package com.stylefeng.guns.system;
 
 import com.stylefeng.guns.base.BaseJunit;
-import com.stylefeng.guns.modular.system.dao.NoticeDao;
+import cn.leiyy.modules.system.dao.NoticeDao;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

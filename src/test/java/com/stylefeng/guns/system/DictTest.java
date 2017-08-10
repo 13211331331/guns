@@ -1,8 +1,8 @@
 package com.stylefeng.guns.system;
 
 import com.stylefeng.guns.base.BaseJunit;
-import com.stylefeng.guns.modular.system.dao.DictDao;
-import com.stylefeng.guns.modular.system.service.IDictService;
+import cn.leiyy.modules.system.dao.DictDao;
+import cn.leiyy.modules.system.service.IDictService;
 import org.junit.Assert;
 import org.junit.Test;
 
