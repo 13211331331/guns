@@ -1,4 +1,4 @@
-package cn.leiyy.modules.system.controller;
+package cn.leiyy.modules.wechat.controller;
 
 
 import cn.leiyy.common.controller.BaseController;
