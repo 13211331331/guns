@@ -24,24 +24,24 @@ public class DictTest extends BaseJunit {
     @Resource
     DictDao dictDao;
 
-    @Test
+    //@Test
     public void addTest() {
         String dictName = "这是一个字典测试";
         String dictValues = "1:测试1;2:测试2";
         dictService.addDict(dictName, dictValues);
     }
 
-    @Test
+  //  @Test
     public void editTest() {
         dictService.editDict(16, "测试", "1:测试1;2:测试2");
     }
 
-    @Test
+   // @Test
     public void deleteTest() {
         this.dictService.delteDict(16);
     }
 
-    @Test
+   // @Test
     public void listTest() {
         List<Map<String, Object>> list = this.dictDao.list("性别");
         Assert.assertTrue(list.size() > 0);

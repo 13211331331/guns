@@ -28,7 +28,7 @@ public class MenuTest extends BaseJunit {
      * @author stylefeng
      * @Date 2017/6/13 21:24
      */
-    @Test
+    //@Test
     public void generatePcodes() {
         List<Menu> menus = menuMapper.selectList(null);
         for (Menu menu : menus) {
