@@ -20,8 +20,8 @@ public class PageConfig {
         pagePathTemplate = "\\src\\main\\webapp\\WEB-INF\\view\\" + contextConfig.getModuleName() + "\\{}\\{}.html";
         pageAddPathTemplate = "\\src\\main\\webapp\\WEB-INF\\view\\" + contextConfig.getModuleName() + "\\{}\\{}_add.html";
         pageEditPathTemplate = "\\src\\main\\webapp\\WEB-INF\\view\\" + contextConfig.getModuleName() + "\\{}\\{}_edit.html";
-        pageJsPathTemplate = "\\src\\main\\webapp\\static\\modular\\" + contextConfig.getModuleName() + "\\{}\\{}.js";
-        pageInfoJsPathTemplate = "\\src\\main\\webapp\\static\\modular\\" + contextConfig.getModuleName() + "\\{}\\{}_info.js";
+        pageJsPathTemplate = "\\src\\main\\webapp\\static\\modules\\" + contextConfig.getModuleName() + "\\{}\\{}.js";
+        pageInfoJsPathTemplate = "\\src\\main\\webapp\\static\\modules\\" + contextConfig.getModuleName() + "\\{}\\{}_info.js";
     }
 
     public String getPagePathTemplate() {

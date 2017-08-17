@@ -18,21 +18,21 @@ var MenuInfoDlg = {
                     message: '菜单编号不能为空'
                 }
             }
-        },
-        pcodeName: {
+        }
+       /* pcodeName: {
             validators: {
                 notEmpty: {
                     message: '父菜单不能为空'
                 }
             }
-        },
-        url: {
+        },*/
+       /* url: {
             validators: {
                 notEmpty: {
                     message: '请求地址不能为空'
                 }
             }
-        }
+        }*/
     }
 };
 

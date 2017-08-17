@@ -1,8 +1,8 @@
 /**
  * 部门管理初始化
  */
-var Dept = {
-    id: "DeptTable",	//表格id
+var Public = {
+    id: "PublicTable",	//表格id
     seItem: null,		//选中的条目
     table: null,
     layerIndex: -1
@@ -11,7 +11,7 @@ var Dept = {
 /**
  * 初始化表格的列
  */
-Dept.initColumn = function () {
+Public.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', align: 'center', valign: 'middle',width:'50px'},
@@ -24,13 +24,13 @@ Dept.initColumn = function () {
 /**
  * 检查是否选中
  */
-Dept.check = function () {
+Public.check = function () {
     var selected = $('#' + this.id).bootstrapTreeTable('getSelections');
     if(selected.length == 0){
         Feng.info("请先选中表格中的某一记录！");
         return false;
     }else{
-        Dept.seItem = selected[0];
+        Public.seItem = selected[0];
         return true;
     }
 };
@@ -38,14 +38,14 @@ Dept.check = function () {
 /**
  * 点击添加部门
  */
-Dept.openAddDept = function () {
+Public.openAdd = function () {
     var index = layer.open({
         type: 2,
-        title: '添加部门',
+        title: '添加公众号',
         area: ['800px', '420px'], //宽高
         fix: false, //不固定
         maxmin: true,
-        content: Feng.ctxPath + '/dept/dept_add'
+        content: Feng.ctxPath + '/public-signal/to-add'
     });
     this.layerIndex = index;
 };
@@ -53,7 +53,7 @@ Dept.openAddDept = function () {
 /**
  * 打开查看部门详情
  */
-Dept.openDeptDetail = function () {
+Public.openDetail = function () {
     if (this.check()) {
         var index = layer.open({
             type: 2,
@@ -61,7 +61,7 @@ Dept.openDeptDetail = function () {
             area: ['800px', '420px'], //宽高
             fix: false, //不固定
             maxmin: true,
-            content: Feng.ctxPath + '/dept/dept_update/' + Dept.seItem.id
+            content: Feng.ctxPath + '/public-signal/update/' + Dept.seItem.id
         });
         this.layerIndex = index;
     }
@@ -70,13 +70,12 @@ Dept.openDeptDetail = function () {
 /**
  * 删除部门
  */
-Dept.delete = function () {
+Public.delete = function () {
     if (this.check()) {
-
         var operation = function(){
-            var ajax = new $ax(Feng.ctxPath + "/dept/delete", function () {
+            var ajax = new $ax(Feng.ctxPath + "/public-signal/delete", function () {
                 Feng.success("删除成功!");
-                Dept.table.refresh();
+                Public.table.refresh();
             }, function (data) {
                 Feng.error("删除失败!" + data.responseJSON.message + "!");
             });
@@ -84,27 +83,25 @@ Dept.delete = function () {
             ajax.start();
         };
 
-        Feng.confirm("是否刪除该部门?", operation);
+        Feng.confirm("是否刪除该公众号?", operation);
     }
 };
 
-/**
- * 查询部门列表
- */
-Dept.search = function () {
+
+Public.search = function () {
     var queryData = {};
     queryData['condition'] = $("#condition").val();
     Dept.table.refresh({query: queryData});
 };
 
 $(function () {
-    var defaultColunms = Dept.initColumn();
-    var table = new BSTreeTable(Dept.id, "/dept/list", defaultColunms);
+    var defaultColunms = Public.initColumn();
+    var table = new BSTreeTable(Public.id, "/public-signal/list", defaultColunms);
     table.setExpandColumn(2);
     table.setIdField("id");
     table.setCodeField("id");
     table.setParentCodeField("pid");
     table.setExpandAll(true);
     table.init();
-    Dept.table = table;
+    Public.table = table;
 });
