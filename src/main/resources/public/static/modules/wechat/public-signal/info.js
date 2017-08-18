@@ -5,24 +5,31 @@ var InfoDlg = {
     InfoData : {},
     zTreeInstance : null,
     validateFields: {
-        simplename: {
+        name: {
             validators: {
                 notEmpty: {
-                    message: '部门名称不能为空'
+                    message: '公众号不能为空'
                 }
             }
         },
-        fullname: {
+        appsecret: {
             validators: {
                 notEmpty: {
-                    message: '部门全称不能为空'
+                    message: 'appsecret不能为空'
                 }
             }
         },
-        pName: {
+        appid: {
             validators: {
                 notEmpty: {
-                    message: '上级名称不能为空'
+                    message: 'appid不能为空'
+                }
+            }
+        },
+        token: {
+            validators: {
+                notEmpty: {
+                    message: 'token不能为空'
                 }
             }
         }
@@ -105,7 +112,7 @@ InfoDlg.hideSelectTree = function() {
  * 收集数据
  */
 InfoDlg.collectData = function() {
-    this.set('id').set('simplename').set('fullname').set('tips').set('num').set('pid');
+    this.set('id').set('name').set('appsecret').set('url').set('appid').set('token');
 }
 
 /**
@@ -174,8 +181,8 @@ function onBodyDown(event) {
 
 $(function() {
     Feng.initValidator("InfoForm", InfoDlg.validateFields);
-    var ztree = new $ZTree("parentMenuTree", "/public-signal/tree");
-    ztree.bindOnClick(InfoDlg.onClick);
-    ztree.init();
-    InfoDlg.zTreeInstance = ztree;
+   // var ztree = new $ZTree("parentMenuTree", "/public-signal/tree");
+   // ztree.bindOnClick(InfoDlg.onClick);
+   // ztree.init();
+   // InfoDlg.zTreeInstance = ztree;
 });

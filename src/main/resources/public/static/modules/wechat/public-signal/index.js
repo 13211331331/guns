@@ -42,7 +42,7 @@ Public.openAdd = function () {
     var index = layer.open({
         type: 2,
         title: '添加公众号',
-        area: ['800px', '420px'], //宽高
+        area: ['800px', '430px'], //宽高
         fix: false, //不固定
         maxmin: true,
         content: Feng.ctxPath + '/public-signal/to-add'

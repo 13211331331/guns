@@ -7,6 +7,7 @@ import cn.leiyy.common.controller.BaseController;
 import cn.leiyy.common.exception.BizExceptionEnum;
 import cn.leiyy.common.exception.BussinessException;
 import cn.leiyy.common.persistence.model.Dept;
+import cn.leiyy.common.persistence.model.PublicSignal;
 import cn.leiyy.core.util.ToolUtil;
 import cn.leiyy.modules.system.warpper.DeptWarpper;
 import cn.leiyy.modules.wechat.service.IPublicSignalService;
@@ -56,12 +57,13 @@ public class PublicSignalController extends BaseController {
     /**
      * 新增部门
      */
-    @BussinessLog(value = "添加部门", key = "simplename", dict = Dict.DeptDict)
+    @BussinessLog(value = "添加公众号", key = "name", dict = Dict.PublicSignalDict)
     @RequestMapping(value = "/add")
     @Permission
     @ResponseBody
-    public Object add(Map<String,Object> map) {
-        return publicSignalService.add(map);
+    public Object add(PublicSignal publicSignal) {
+        publicSignalService.add(publicSignal);
+        return SUCCESS_TIP;
     }
 
 

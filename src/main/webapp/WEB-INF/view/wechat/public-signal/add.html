@@ -4,21 +4,18 @@
         <div class="form-horizontal" id="InfoForm">
 
             <input type="hidden" id="id" value="">
-
             <div class="row">
                 <div class="col-sm-6 b-r">
-                    <#input id="simplename" name="部门名称" underline="true"/>
+                    <#input id="name" name="公众号" underline="true"/>
 
-                    <#input id="fullname" name="部门全称" underline="true"/>
+                    <#input id="appsecret" name="appsecret" underline="true"/>
 
-                    <#input id="tips" name="备注" underline="true"/>
+                    <#input id="url" name="url" underline="true"/>
                 </div>
                 <div class="col-sm-6">
-                    <#input id="num" name="排序" underline="true"/>
+                    <#input id="appid" name="appid" underline="true"/>
 
-                    <#input id="pName" name="上级部门" readonly="readonly" hidden="pid"
-                            clickFun="InfoDlg.showSelectTree(); return false;"
-                            style="background-color: #ffffff !important;"/>
+                    <#input id="token" name="token" underline="true"/>
                 </div>
             </div>
 

@@ -15,5 +15,5 @@ import java.util.Map;
  */
 public interface IPublicSignalService extends IService<PublicSignal> {
 
-    Object add(Map<String, Object> map);
+    void add(PublicSignal map);
 }

@@ -1,5 +1,7 @@
 package cn.leiyy.common.constant;
 
+import cn.leiyy.common.constant.dictmap.PublicSignalDic;
+
 /**
  * 字典常量
  *
@@ -42,5 +44,10 @@ public interface Dict {
      * 通知管理业务的字典
      */
     String NoticeMap = "NoticeMap";
+
+    /**
+     * 公众号管理业务的字典
+     */
+    String PublicSignalDict = "PublicSignalDic";
 
 }
