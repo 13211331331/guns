@@ -15,10 +15,11 @@ Public.initColumn = function () {
     return [
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', align: 'center', valign: 'middle',width:'50px'},
-        {title: '部门简称', field: 'simplename', align: 'center', valign: 'middle', sortable: true},
-        {title: '部门全称', field: 'fullname', align: 'center', valign: 'middle', sortable: true},
-        {title: '排序', field: 'num', align: 'center', valign: 'middle', sortable: true},
-        {title: '备注', field: 'tips', align: 'center', valign: 'middle', sortable: true}];
+        {title: '公众号', field: 'name', align: 'center', valign: 'middle', sortable: true},
+        {title: 'appid', field: 'appid', align: 'center', valign: 'middle', sortable: true},
+        {title: 'appsecret', field: 'appsecret', align: 'center', valign: 'middle', sortable: true},
+        {title: 'token', field: 'token', align: 'center', valign: 'middle', sortable: true},
+        {title: 'url', field: 'url', align: 'center', valign: 'middle', sortable: true}];
 };
 
 /**
@@ -94,14 +95,16 @@ Public.search = function () {
     Dept.table.refresh({query: queryData});
 };
 
+Public.formParams = function() {
+    var queryData = {};
+    queryData['name'] = $("#name").val();
+    return queryData;
+}
+
 $(function () {
     var defaultColunms = Public.initColumn();
-    var table = new BSTreeTable(Public.id, "/public-signal/list", defaultColunms);
-    table.setExpandColumn(2);
-    table.setIdField("id");
-    table.setCodeField("id");
-    table.setParentCodeField("pid");
-    table.setExpandAll(true);
-    table.init();
-    Public.table = table;
+    var table = new BSTable(Public.id, "/public-signal/list", defaultColunms);
+    table.setPaginationType("server");
+    table.setQueryParams(Public.formParams());
+    Public.table = table.init();
 });
