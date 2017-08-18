@@ -3,21 +3,15 @@ package cn.leiyy.modules.wechat.controller;
 import cn.leiyy.common.annotion.Permission;
 import cn.leiyy.common.annotion.log.BussinessLog;
 import cn.leiyy.common.constant.Dict;
+import cn.leiyy.common.constant.factory.PageFactory;
 import cn.leiyy.common.controller.BaseController;
-import cn.leiyy.common.exception.BizExceptionEnum;
-import cn.leiyy.common.exception.BussinessException;
-import cn.leiyy.common.persistence.model.Dept;
 import cn.leiyy.common.persistence.model.PublicSignal;
-import cn.leiyy.core.util.ToolUtil;
-import cn.leiyy.modules.system.warpper.DeptWarpper;
 import cn.leiyy.modules.wechat.service.IPublicSignalService;
+import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by hanlin.huang on 2017/8/6.
@@ -48,9 +42,9 @@ public class PublicSignalController extends BaseController {
     @Permission
     @ResponseBody
     public Object list(String condition) {
-       // List<Map<String, Object>> list = this.deptDao.list(condition);
-       // return super.warpObject(new DeptWarpper(list));
-        return null;
+        Page<PublicSignal> page = new PageFactory<PublicSignal>().defaultPage();
+        page.setRecords(publicSignalService.findByCondition(page,condition));
+        return super.packForBT(page);
     }
 
 
@@ -62,7 +56,7 @@ public class PublicSignalController extends BaseController {
     @Permission
     @ResponseBody
     public Object add(PublicSignal publicSignal) {
-        publicSignalService.add(publicSignal);
+        publicSignalService.insert(publicSignal);
         return SUCCESS_TIP;
     }
 

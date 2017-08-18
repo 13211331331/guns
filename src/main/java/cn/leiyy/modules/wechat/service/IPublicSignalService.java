@@ -1,8 +1,11 @@
 package cn.leiyy.modules.wechat.service;
 
+import cn.leiyy.common.persistence.model.OperationLog;
 import cn.leiyy.common.persistence.model.PublicSignal;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.IService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,5 +18,6 @@ import java.util.Map;
  */
 public interface IPublicSignalService extends IService<PublicSignal> {
 
-    void add(PublicSignal map);
+    List<PublicSignal> findByCondition(Page<PublicSignal> page,String condition);
+
 }
