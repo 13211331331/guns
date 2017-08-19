@@ -26,7 +26,7 @@ Public.initColumn = function () {
  * 检查是否选中
  */
 Public.check = function () {
-    var selected = $('#' + this.id).bootstrapTreeTable('getSelections');
+    var selected = $('#' + this.id).bootstrapTable('getSelections');
     if(selected.length == 0){
         Feng.info("请先选中表格中的某一记录！");
         return false;
@@ -54,15 +54,15 @@ Public.openAdd = function () {
 /**
  * 打开查看部门详情
  */
-Public.openDetail = function () {
+Public.openUpdate = function () {
     if (this.check()) {
         var index = layer.open({
             type: 2,
-            title: '部门详情',
-            area: ['800px', '420px'], //宽高
+            title: '修改公众号',
+            area: ['800px', '430px'], //宽高
             fix: false, //不固定
             maxmin: true,
-            content: Feng.ctxPath + '/public-signal/update/' + Dept.seItem.id
+            content: Feng.ctxPath + '/public-signal/update/' + Public.seItem.id
         });
         this.layerIndex = index;
     }
@@ -80,7 +80,7 @@ Public.delete = function () {
             }, function (data) {
                 Feng.error("删除失败!" + data.responseJSON.message + "!");
             });
-            ajax.set("deptId",Dept.seItem.id);
+            ajax.set("id",Public.seItem.id);
             ajax.start();
         };
 
@@ -92,7 +92,7 @@ Public.delete = function () {
 Public.search = function () {
     var queryData = {};
     queryData['condition'] = $("#condition").val();
-    Dept.table.refresh({query: queryData});
+    Public.table.refresh({query: queryData});
 };
 
 Public.formParams = function() {

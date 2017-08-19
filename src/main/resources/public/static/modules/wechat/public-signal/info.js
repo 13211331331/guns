@@ -1,6 +1,4 @@
-/**
- * 初始化部门详情对话框
- */
+
 var InfoDlg = {
     InfoData : {},
     zTreeInstance : null,
@@ -71,38 +69,13 @@ InfoDlg.close = function() {
     parent.layer.close(window.parent.Public.layerIndex);
 }
 
-/**
- * 点击部门ztree列表的选项时
- *
- * @param e
- * @param treeId
- * @param treeNode
- * @returns
- */
+
 InfoDlg.onClick = function(e, treeId, treeNode) {
     $("#pName").attr("value", InfoDlg.zTreeInstance.getSelectedVal());
     $("#pid").attr("value", treeNode.id);
 }
 
-/**
- * 显示部门选择的树
- *
- * @returns
- */
-InfoDlg.showSelectTree = function() {
-    var pName = $("#pName");
-    var pNameOffset = $("#pName").offset();
-    $("#parentMenu").css({
-        left : pNameOffset.left + "px",
-        top : pNameOffset.top + pName.outerHeight() + "px"
-    }).slideDown("fast");
 
-    $("body").bind("mousedown", onBodyDown);
-}
-
-/**
- * 隐藏部门选择的树
- */
 InfoDlg.hideSelectTree = function() {
     $("#parentMenu").fadeOut("fast");
     $("body").unbind("mousedown", onBodyDown);// mousedown当鼠标按下就可以触发，不用弹起
@@ -124,14 +97,10 @@ InfoDlg.validate = function () {
     return $("#InfoForm").data('bootstrapValidator').isValid();
 }
 
-/**
- * 提交添加部门
- */
-InfoDlg.addSubmit = function() {
 
+InfoDlg.addSubmit = function() {
     this.clearData();
     this.collectData();
-
     if (!this.validate()) {
         return;
     }
@@ -181,8 +150,4 @@ function onBodyDown(event) {
 
 $(function() {
     Feng.initValidator("InfoForm", InfoDlg.validateFields);
-   // var ztree = new $ZTree("parentMenuTree", "/public-signal/tree");
-   // ztree.bindOnClick(InfoDlg.onClick);
-   // ztree.init();
-   // InfoDlg.zTreeInstance = ztree;
 });
