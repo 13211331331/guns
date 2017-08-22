@@ -51,9 +51,7 @@ Public.openAdd = function () {
     this.layerIndex = index;
 };
 
-/**
- * 打开查看部门详情
- */
+
 Public.openUpdate = function () {
     if (this.check()) {
         var index = layer.open({
@@ -63,6 +61,22 @@ Public.openUpdate = function () {
             fix: false, //不固定
             maxmin: true,
             content: Feng.ctxPath + '/public-signal/update/' + Public.seItem.id
+        });
+        this.layerIndex = index;
+    }
+};
+
+
+
+Public.menu = function () {
+    if (this.check()) {
+        var index = layer.open({
+            type: 2,
+            title: '配置公众号菜单',
+            area: ['1000px', '620px'], //宽高
+            fix: false, //不固定
+            maxmin: true,
+            content: Feng.ctxPath + '/public-signal/menu/' + Public.seItem.id
         });
         this.layerIndex = index;
     }

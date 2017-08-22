@@ -12,7 +12,6 @@ import cn.leiyy.common.controller.BaseController;
 import cn.leiyy.common.exception.BizExceptionEnum;
 import cn.leiyy.common.exception.BussinessException;
 import cn.leiyy.common.persistence.model.PublicSignal;
-import cn.leiyy.common.persistence.model.Role;
 import cn.leiyy.core.cache.CacheKit;
 import cn.leiyy.core.log.LogObjectHolder;
 import cn.leiyy.core.util.ToolUtil;
@@ -21,7 +20,6 @@ import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -64,9 +62,7 @@ public class PublicSignalController extends BaseController {
     }
 
 
-    /**
-     * 新增部门
-     */
+
     @BussinessLog(value = "添加公众号", key = "name", dict = Dict.PublicSignalDict)
     @RequestMapping(value = "/add")
     @Permission
@@ -122,4 +118,72 @@ public class PublicSignalController extends BaseController {
         CacheKit.removeAll(Cache.CONSTANT);
         return SUCCESS_TIP;
     }
+
+
+
+    @Permission
+    @RequestMapping(value = "/menu/{id}")
+    public String toMenu(@PathVariable Integer id, Model model) {
+        if (ToolUtil.isEmpty(id)) {
+            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+        }
+        PublicSignal publicSignal = this.publicSignalService.selectById(id);
+        model.addAttribute("publicSignal", publicSignal);
+        model.addAttribute("id", id);
+        LogObjectHolder.me().set(publicSignal);
+        return PREFIX + "/menu.html";
+    }
+
+    @Permission
+    @RequestMapping(value = "/menu-list/{id}")
+    @ResponseBody
+    public Object menuList(@PathVariable Integer id, Model model) {
+        // ZX_MONEY_SUM_CAR_20170820  PROC_SYNC_CAR_ACTUALPAY_REMOTE  SYNC_CAR_ACTUALPAY
+       return null;
+    }
+
+
+    @RequestMapping("/menu-to-add/{id}")
+    public String toMenuAdd(@PathVariable Integer id, Model model) {
+        model.addAttribute("id", id);
+        return PREFIX + "addMenu.html";
+    }
+
+
+    @BussinessLog(value = "添加公众号菜单", key = "name", dict = Dict.PublicSignalDict)
+    @RequestMapping("/menu-add")
+    @Permission
+    @ResponseBody
+    public Object addMenu(PublicSignal publicSignal) {
+        publicSignalService.insert(publicSignal);
+        return SUCCESS_TIP;
+    }
+
+    @RequestMapping("/menu-to-update/{id}")
+    public String toMenuUpdate(@PathVariable Integer id, Model model) {
+        model.addAttribute("id", id);
+        return PREFIX + "addMenu.html";
+    }
+
+
+    @BussinessLog(value = "修改公众号菜单", key = "name", dict = Dict.PublicSignalDict)
+    @RequestMapping("/menu-update")
+    @Permission
+    @ResponseBody
+    public Object updateMenu(PublicSignal publicSignal) {
+        publicSignalService.insert(publicSignal);
+        return SUCCESS_TIP;
+    }
+
+
+    @BussinessLog(value = "删除公众号菜单", key = "name", dict = Dict.PublicSignalDict)
+    @RequestMapping("/menu-delete")
+    @Permission
+    @ResponseBody
+    public Object deleteMenu(PublicSignal publicSignal) {
+        publicSignalService.insert(publicSignal);
+        return SUCCESS_TIP;
+    }
+
+
 }
