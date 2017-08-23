@@ -53,7 +53,6 @@ Public.openAdd = function () {
         maxmin: true,
         content: Feng.ctxPath + '/public-signal/menu-to-add/'  + publicid
     });
-    alert(publicid);
     this.layerIndex = index;
 };
 

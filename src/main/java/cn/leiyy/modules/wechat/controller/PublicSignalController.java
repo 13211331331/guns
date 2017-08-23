@@ -146,7 +146,7 @@ public class PublicSignalController extends BaseController {
     @RequestMapping("/menu-to-add/{id}")
     public String toMenuAdd(@PathVariable Integer id, Model model) {
         model.addAttribute("id", id);
-        return PREFIX + "addMenu.html";
+        return PREFIX + "menu_add.html";
     }
 
 

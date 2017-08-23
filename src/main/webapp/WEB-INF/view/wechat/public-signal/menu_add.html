@@ -1,0 +1,39 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal" id="InfoForm">
+
+            <input type="hidden" id="id" value="">
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                    <#input id="name" name="公众号" underline="true"/>
+
+                    <#input id="appsecret" name="appsecret" underline="true"/>
+
+                    <#input id="url" name="url" underline="true"/>
+                </div>
+                <div class="col-sm-6">
+                    <#input id="appid" name="appid" underline="true"/>
+
+                    <#input id="token" name="token" underline="true"/>
+                </div>
+            </div>
+
+            <!-- 父级部门的选择框 -->
+            <div id="parentMenu" class="menuContent"
+                 style="display: none; position: absolute; z-index: 200;">
+                <ul id="parentMenuTree" class="ztree tree-box" style="width: 245px !important;"></ul>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="InfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="InfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modules/wechat/public-signal/menu_info.js"></script>
+@}
