@@ -16,6 +16,7 @@ import cn.leiyy.common.persistence.model.WechatMenu;
 import cn.leiyy.core.cache.CacheKit;
 import cn.leiyy.core.log.LogObjectHolder;
 import cn.leiyy.core.util.ToolUtil;
+import cn.leiyy.modules.system.warpper.MenuWarpper;
 import cn.leiyy.modules.wechat.service.IPublicSignalService;
 import cn.leiyy.modules.wechat.service.IWechatMenuService;
 import com.baomidou.mybatisplus.plugins.Page;
@@ -28,6 +29,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by hanlin.huang on 2017/8/6.
@@ -77,27 +80,19 @@ public class PublicSignalController extends BaseController {
         return SUCCESS_TIP;
     }
 
-    /**
-     * 删除部门
-     */
+
     @BussinessLog(value = "删除公众号", key = "id", dict = Dict.PublicSignalDict)
     @RequestMapping(value = "/delete")
     @Permission
     @ResponseBody
     public Object delete(@RequestParam Integer id) {
-
-        //缓存被删除的部门名称
        // LogObjectHolder.me().set(ConstantFactory.me().getDeptName(deptId));
-
         publicSignalService.deleteById(id);
-
         return SUCCESS_TIP;
     }
 
 
-    /**
-     * 跳转到修改角色
-     */
+
     @Permission
     @RequestMapping(value = "/update/{id}")
     public String toUpdate(@PathVariable Integer id, Model model) {
@@ -111,9 +106,6 @@ public class PublicSignalController extends BaseController {
     }
 
 
-    /**
-     * 角色修改
-     */
     @RequestMapping(value = "/update")
     @BussinessLog(value = "修改公众号", key = "name", dict = Dict.PublicSignalDict)
     @ResponseBody
@@ -142,9 +134,8 @@ public class PublicSignalController extends BaseController {
     @Permission
     @RequestMapping(value = "/menu-list/{id}")
     @ResponseBody
-    public Object menuList(@PathVariable Integer id, Model model) {
-        // ZX_MONEY_SUM_CAR_20170820  PROC_SYNC_CAR_ACTUALPAY_REMOTE  SYNC_CAR_ACTUALPAY
-       return null;
+    public Object menuList(@PathVariable Integer id) {
+        return  wechatMenuService.getMenusByPublicSignalId(id);
     }
 
 
