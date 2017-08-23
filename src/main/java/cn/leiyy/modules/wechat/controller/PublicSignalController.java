@@ -12,10 +12,12 @@ import cn.leiyy.common.controller.BaseController;
 import cn.leiyy.common.exception.BizExceptionEnum;
 import cn.leiyy.common.exception.BussinessException;
 import cn.leiyy.common.persistence.model.PublicSignal;
+import cn.leiyy.common.persistence.model.WechatMenu;
 import cn.leiyy.core.cache.CacheKit;
 import cn.leiyy.core.log.LogObjectHolder;
 import cn.leiyy.core.util.ToolUtil;
 import cn.leiyy.modules.wechat.service.IPublicSignalService;
+import cn.leiyy.modules.wechat.service.IWechatMenuService;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +38,9 @@ public class PublicSignalController extends BaseController {
 
     @Autowired
     private IPublicSignalService publicSignalService;
+
+    @Autowired
+    private IWechatMenuService wechatMenuService;
 
     private String PREFIX = "/wechat/public-signal/";
 
@@ -150,12 +155,12 @@ public class PublicSignalController extends BaseController {
     }
 
 
-    @BussinessLog(value = "添加公众号菜单", key = "name", dict = Dict.PublicSignalDict)
+    @BussinessLog(value = "添加公众号菜单", key = "name", dict = Dict.WechatMenuDict)
     @RequestMapping("/menu-add")
     @Permission
     @ResponseBody
-    public Object addMenu(PublicSignal publicSignal) {
-        publicSignalService.insert(publicSignal);
+    public Object addMenu(WechatMenu wechatMenu) {
+        wechatMenuService.insert(wechatMenu);
         return SUCCESS_TIP;
     }
 
@@ -166,22 +171,22 @@ public class PublicSignalController extends BaseController {
     }
 
 
-    @BussinessLog(value = "修改公众号菜单", key = "name", dict = Dict.PublicSignalDict)
+    @BussinessLog(value = "修改公众号菜单", key = "name", dict = Dict.WechatMenuDict)
     @RequestMapping("/menu-update")
     @Permission
     @ResponseBody
-    public Object updateMenu(PublicSignal publicSignal) {
-        publicSignalService.insert(publicSignal);
+    public Object updateMenu(WechatMenu wechatMenu) {
+        wechatMenuService.updateById(wechatMenu);
         return SUCCESS_TIP;
     }
 
 
-    @BussinessLog(value = "删除公众号菜单", key = "name", dict = Dict.PublicSignalDict)
+    @BussinessLog(value = "删除公众号菜单", key = "name", dict = Dict.WechatMenuDict)
     @RequestMapping("/menu-delete")
     @Permission
     @ResponseBody
-    public Object deleteMenu(PublicSignal publicSignal) {
-        publicSignalService.insert(publicSignal);
+    public Object deleteMenu(WechatMenu wechatMenu) {
+        wechatMenuService.deleteById(wechatMenu);
         return SUCCESS_TIP;
     }
 

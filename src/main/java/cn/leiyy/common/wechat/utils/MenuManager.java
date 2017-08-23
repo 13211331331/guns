@@ -95,9 +95,7 @@ public class MenuManager
         btn31.setType("click");
         btn31.setKey("31");
 
-        ClickButton btn32 = new ClickButton();
-        btn32.setName("电影排行榜");
-        btn32.setKey("32");
+
 
         ViewButton btn33 = new ViewButton();
         btn33.setName("幽默笑话");
@@ -123,14 +121,21 @@ public class MenuManager
 
         ComplexButton mainBtn3 = new ComplexButton();
         mainBtn3.setName("更多体验");
-        mainBtn3.setSub_button(new Button[] { btn31, btn32, btn33 });
+        mainBtn3.setSub_button(new Button[] { btn31, btn33 });
 
 
         /**
          * 封装整个菜单
          */
         Menu menu = new Menu();
-        menu.setButton(new Button[] { mainBtn1, mainBtn2, mainBtn3 });
+      //  menu.setButton(new Button[] { mainBtn1, mainBtn2, mainBtn3 });
+
+        ViewButton btn32 = new ViewButton();
+        btn32.setName("百度");
+        btn32.setType("view");
+        btn32.setUrl("https://www.baidu.com/");
+
+        menu.setButton(new Button[] { btn32 });
 
         return menu;
     }

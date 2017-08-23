@@ -50,4 +50,10 @@ public interface Dict {
      */
     String PublicSignalDict = "PublicSignalDic";
 
+
+    /**
+     * 微信菜单业务的字典
+     */
+    String WechatMenuDict = "WechatMenuDict";
+
 }
