@@ -2,20 +2,20 @@
 <div class="ibox float-e-margins">
     <div class="ibox-content">
         <div class="form-horizontal" id="InfoForm">
-
-            <input type="hidden" id="id" value="">
+            <input type="hidden" id="publicSignalId" value="">
             <div class="row">
                 <div class="col-sm-6 b-r">
-                    <#input id="name" name="公众号" underline="true"/>
-
-                    <#input id="appsecret" name="appsecret" underline="true"/>
-
-                    <#input id="url" name="url" underline="true"/>
+                    <#input id="name" name="菜单名称" underline="true"/>
+                    <#input id="key" name="菜单指令" underline="true"/>
+                    <#input id="pid" name="上级菜单" underline="true"/>
                 </div>
                 <div class="col-sm-6">
-                    <#input id="appid" name="appid" underline="true"/>
-
-                    <#input id="token" name="token" underline="true"/>
+                    <#select id="type" name="菜单类型" underline="true">
+                        <option value="menu">顶级菜单</option>
+                        <option value="click">指令菜单</option>
+                        <option value="view">url跳转</option>
+                    </#select>
+                    <#input id="url" name="跳转url" underline="true"/>
                 </div>
             </div>
 

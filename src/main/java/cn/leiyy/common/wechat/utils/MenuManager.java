@@ -130,12 +130,22 @@ public class MenuManager
         Menu menu = new Menu();
       //  menu.setButton(new Button[] { mainBtn1, mainBtn2, mainBtn3 });
 
+
+
         ViewButton btn32 = new ViewButton();
         btn32.setName("百度");
         btn32.setType("view");
         btn32.setUrl("https://www.baidu.com/");
 
-        menu.setButton(new Button[] { btn32 });
+
+        ComplexButton a = new ComplexButton();
+        a.setName("更多体验");
+        a.setSub_button(new Button[] { btn32 });
+
+
+
+
+        menu.setButton(new Button[] { a,mainBtn1 });
 
         return menu;
     }

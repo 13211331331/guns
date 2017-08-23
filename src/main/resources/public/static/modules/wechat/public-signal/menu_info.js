@@ -6,28 +6,7 @@ var InfoDlg = {
         name: {
             validators: {
                 notEmpty: {
-                    message: '公众号不能为空'
-                }
-            }
-        },
-        appsecret: {
-            validators: {
-                notEmpty: {
-                    message: 'appsecret不能为空'
-                }
-            }
-        },
-        appid: {
-            validators: {
-                notEmpty: {
-                    message: 'appid不能为空'
-                }
-            }
-        },
-        token: {
-            validators: {
-                notEmpty: {
-                    message: 'token不能为空'
+                    message: '菜单名称不能为空'
                 }
             }
         }
@@ -85,7 +64,7 @@ InfoDlg.hideSelectTree = function() {
  * 收集数据
  */
 InfoDlg.collectData = function() {
-    this.set('id').set('name').set('appsecret').set('url').set('appid').set('token');
+    this.set('id').set('name').set('key').set('url').set('pid').set('type').set('publicSignalId');
 }
 
 /**
@@ -106,7 +85,7 @@ InfoDlg.addSubmit = function() {
     }
 
     //提交信息
-    var ajax = new $ax(Feng.ctxPath + "/public-signal/add", function(data){
+    var ajax = new $ax(Feng.ctxPath + "/public-signal/menu-add", function(data){
         Feng.success("添加成功!");
         window.parent.Public.table.refresh();
         InfoDlg.close();
