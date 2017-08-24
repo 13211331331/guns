@@ -11,6 +11,7 @@ import cn.leiyy.common.constant.tips.Tip;
 import cn.leiyy.common.controller.BaseController;
 import cn.leiyy.common.exception.BizExceptionEnum;
 import cn.leiyy.common.exception.BussinessException;
+import cn.leiyy.common.node.ZTreeNode;
 import cn.leiyy.common.persistence.model.PublicSignal;
 import cn.leiyy.common.persistence.model.WechatMenu;
 import cn.leiyy.core.cache.CacheKit;
@@ -181,5 +182,15 @@ public class PublicSignalController extends BaseController {
         return SUCCESS_TIP;
     }
 
+
+    /**
+     * 获取部门的tree列表
+     */
+    @RequestMapping(value = "/menu-tree")
+    @ResponseBody
+    public List<ZTreeNode> tree() {
+        List<ZTreeNode> tree = wechatMenuService.getTree();
+        return tree;
+    }
 
 }

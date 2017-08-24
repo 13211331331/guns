@@ -56,7 +56,7 @@ InfoDlg.onClick = function(e, treeId, treeNode) {
 
 
 InfoDlg.hideSelectTree = function() {
-    $("#parentMenu").fadeOut("fast");
+    $("#menuContent").fadeOut("fast");
     $("body").unbind("mousedown", onBodyDown);// mousedown当鼠标按下就可以触发，不用弹起
 }
 
@@ -79,6 +79,19 @@ InfoDlg.validate = function () {
 InfoDlg.chageTypeSelect = function(obj){
     alert(obj.value);
 
+}
+
+InfoDlg.showPidSelectTree = function(){
+    var selectTag = $("#pidSelect");
+    var selectPosition = $("#pidSelect").position();
+    alert(selectPosition.left);
+    alert(selectPosition.top);
+    $("#menuContent").css({
+        left: selectPosition.left + "px",
+        top: selectPosition.top + selectTag.outerHeight() + "px"
+    }).slideDown("fast");
+
+    $("body").bind("mousedown", onBodyDown);
 }
 
 InfoDlg.addSubmit = function() {
@@ -124,13 +137,23 @@ InfoDlg.editSubmit = function() {
     ajax.start();
 }
 
+
+InfoDlg.onClickSelect = function (e, treeId, treeNode) {
+    $("#pidSelect").attr("value", instance.getSelectedVal());
+    $("#pid").attr("value", treeNode.id);
+};
+
 function onBodyDown(event) {
-    if (!(event.target.id == "menuBtn" || event.target.id == "parentMenu" || $(
-            event.target).parents("#parentMenu").length > 0)) {
+    if (!(event.target.id == "menuBtn" || event.target.id == "menuContent" || $(
+            event.target).parents("#menuContent").length > 0)) {
         InfoDlg.hideSelectTree();
     }
 }
 
 $(function() {
     Feng.initValidator("InfoForm", InfoDlg.validateFields);
+    var ztree = new $ZTree("treeDemo", "/public-signal/menu-tree");
+    ztree.bindOnClick(InfoDlg.onClickSelect);
+    ztree.init();
+    instance = ztree;
 });

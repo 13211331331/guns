@@ -1,12 +1,15 @@
 package cn.leiyy.modules.wechat.service.impl;
 
+import cn.leiyy.common.node.ZTreeNode;
 import cn.leiyy.common.persistence.model.WechatMenu;
 import cn.leiyy.common.persistence.dao.WechatMenuMapper;
 import cn.leiyy.modules.wechat.Const;
+import cn.leiyy.modules.wechat.dao.WechatMenuDao;
 import cn.leiyy.modules.wechat.service.IWechatMenuService;
 import cn.leiyy.modules.wechat.vo.WechatMenuVo;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,6 +28,9 @@ import java.util.Map;
 @Service
 public class WechatMenuServiceImpl extends ServiceImpl<WechatMenuMapper, WechatMenu> implements IWechatMenuService {
 
+
+    @Autowired
+    WechatMenuDao wechatMenuDao;
 
     @Override
     public List<WechatMenuVo> getMenusByPublicSignalId(Integer id) {
@@ -51,8 +57,10 @@ public class WechatMenuServiceImpl extends ServiceImpl<WechatMenuMapper, WechatM
         return result;
     }
 
-
-
+    @Override
+    public List<ZTreeNode> getTree() {
+        return wechatMenuDao.tree();
+    }
 
 
 }

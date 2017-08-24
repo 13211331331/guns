@@ -1,5 +1,6 @@
 package cn.leiyy.modules.wechat.service;
 
+import cn.leiyy.common.node.ZTreeNode;
 import cn.leiyy.common.persistence.model.WechatMenu;
 import cn.leiyy.modules.wechat.vo.WechatMenuVo;
 import com.baomidou.mybatisplus.service.IService;
@@ -18,4 +19,5 @@ public interface IWechatMenuService extends IService<WechatMenu> {
 
     List<WechatMenuVo> getMenusByPublicSignalId(Integer id);
 
+    List<ZTreeNode> getTree();
 }
