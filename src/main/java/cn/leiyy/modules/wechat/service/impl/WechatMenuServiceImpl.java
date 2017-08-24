@@ -84,12 +84,11 @@ public class WechatMenuServiceImpl extends ServiceImpl<WechatMenuMapper, WechatM
             MenuList menuLists = getMenu(vos);
             String result = WeixinUtil.createMenuList(menuLists, at.getToken());
             // 判断菜单创建结果
-            if ("0".equals(result))
-            {
+            if ("0".equals(result)) {
                 return;
-            }
-            else
+            } else {
                 throw new RuntimeException("菜单创建失败，错误码：" + result);
+            }
         }else {
             throw new BussinessException(BizExceptionEnum.ERROR_WECHAT_NO_TOKEN);
         }
@@ -148,8 +147,6 @@ public class WechatMenuServiceImpl extends ServiceImpl<WechatMenuMapper, WechatM
                 }
             }
         }
-
-
         menu.setButton(buttons);
         return menu;
     }
