@@ -84,6 +84,8 @@ InfoDlg.chageTypeSelect = function(obj){
 InfoDlg.showPidSelectTree = function(){
     var selectTag = $("#pidSelect");
     var selectPosition = $("#pidSelect").position();
+    console.log(selectPosition);
+    console.log(selectTag);
     alert(selectPosition.left);
     alert(selectPosition.top);
     $("#menuContent").css({

@@ -122,6 +122,10 @@ UserInfoDlg.showDeptSelectTree = function () {
 UserInfoDlg.showInfoDeptSelectTree = function () {
     var cityObj = $("#citySel");
     var cityPosition = $("#citySel").position();
+    alert(cityPosition.left);
+    alert(cityPosition.top);
+    console.log(cityPosition);
+    console.log(cityObj);
     $("#menuContent").css({
         left: cityPosition.left + "px",
         top: cityPosition.top + cityObj.outerHeight() + "px"
