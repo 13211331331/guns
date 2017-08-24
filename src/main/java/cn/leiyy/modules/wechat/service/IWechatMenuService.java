@@ -1,6 +1,7 @@
 package cn.leiyy.modules.wechat.service;
 
 import cn.leiyy.common.persistence.model.WechatMenu;
+import cn.leiyy.modules.wechat.vo.WechatMenuVo;
 import com.baomidou.mybatisplus.service.IService;
 
 import java.util.List;
@@ -15,6 +16,6 @@ import java.util.List;
  */
 public interface IWechatMenuService extends IService<WechatMenu> {
 
-    List<WechatMenu> getMenusByPublicSignalId(Integer id);
+    List<WechatMenuVo> getMenusByPublicSignalId(Integer id);
 
 }

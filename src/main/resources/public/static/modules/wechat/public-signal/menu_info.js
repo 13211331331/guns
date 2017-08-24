@@ -76,6 +76,10 @@ InfoDlg.validate = function () {
     return $("#InfoForm").data('bootstrapValidator').isValid();
 }
 
+InfoDlg.chageTypeSelect = function(obj){
+    alert(obj.value);
+
+}
 
 InfoDlg.addSubmit = function() {
     this.clearData();

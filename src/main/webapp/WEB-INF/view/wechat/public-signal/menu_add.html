@@ -10,10 +10,10 @@
                     <#input id="pid" name="上级菜单" underline="true"/>
                 </div>
                 <div class="col-sm-6">
-                    <#select id="type" name="菜单类型" underline="true">
-                        <option value="menu">顶级菜单</option>
+                    <#select id="type" name="菜单类型" underline="true" onchange="InfoDlg.chageTypeSelect(this)">
                         <option value="click">指令菜单</option>
                         <option value="view">url跳转</option>
+                        <option value="menu">带下级型菜单</option>
                     </#select>
                     <#input id="url" name="跳转url" underline="true"/>
                 </div>

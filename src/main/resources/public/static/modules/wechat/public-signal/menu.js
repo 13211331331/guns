@@ -16,13 +16,11 @@ Public.initColumn = function () {
         {field: 'selectItem', radio: true},
         {title: 'id', field: 'id', visible: false, align: 'center', valign: 'middle',width:'50px'},
         {title: '菜单名称', field: 'name', align: 'center', valign: 'middle', sortable: true,width:'17%'},
-        {title: '菜单编号', field: 'code', align: 'center', valign: 'middle', sortable: true,width:'12%'},
-        {title: '菜单父编号', field: 'pcode', align: 'center', valign: 'middle', sortable: true},
-        {title: '请求地址', field: 'url', align: 'center', valign: 'middle', sortable: true,width:'15%'},
-        {title: '排序', field: 'num', align: 'center', valign: 'middle', sortable: true},
-        {title: '层级', field: 'levels', align: 'center', valign: 'middle', sortable: true},
-        {title: '是否是菜单', field: 'isMenuName', align: 'center', valign: 'middle', sortable: true},
-        {title: '状态', field: 'statusName', align: 'center', valign: 'middle', sortable: true}]
+        {title: '菜单类型', field: 'typeName', align: 'center', valign: 'middle', sortable: true,width:'12%'},
+        {title: '菜单指令', field: 'key', align: 'center', valign: 'middle', sortable: true},
+        {title: '跳转url', field: 'url', align: 'center', valign: 'middle', sortable: true,width:'15%'},
+        {title: '上级菜单', field: 'pidName', align: 'center', valign: 'middle', sortable: true}
+    ]
     return columns;
 };
 
@@ -94,25 +92,15 @@ Public.delete = function () {
     }
 };
 
-/**
- * 搜索
- */
-Public.search = function () {
-    var queryData = {};
 
-    queryData['menuName'] = $("#menuName").val();
-    queryData['level'] = $("#level").val();
-
-    Public.table.refresh({query: queryData});
-}
 
 $(function () {
     var defaultColunms = Public.initColumn();
     var table = new BSTreeTable(Public.id, "/public-signal/menu-list/"+publicid, defaultColunms);
     table.setExpandColumn(2);
     table.setIdField("id");
-    table.setCodeField("code");
-    table.setParentCodeField("pcode");
+    table.setCodeField("id");
+    table.setParentCodeField("pid");
     table.setExpandAll(true);
     table.init();
     Public.table = table;
