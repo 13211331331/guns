@@ -20,4 +20,6 @@ public interface IWechatMenuService extends IService<WechatMenu> {
     List<WechatMenuVo> getMenusByPublicSignalId(Integer id);
 
     List<ZTreeNode> getTree();
+
+    void synch(Integer publicSignalId);
 }

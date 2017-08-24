@@ -156,6 +156,16 @@ public class PublicSignalController extends BaseController {
         return SUCCESS_TIP;
     }
 
+
+    @BussinessLog(value = "同步公众号菜单至微信服务器", key = "name", dict = Dict.WechatMenuDict)
+    @RequestMapping("/menu-synch")
+    @Permission
+    @ResponseBody
+    public Object synchMenu(Integer publicSignalId) {
+        wechatMenuService.synch(publicSignalId);
+        return SUCCESS_TIP;
+    }
+
     @RequestMapping("/menu-to-update/{id}")
     public String toMenuUpdate(@PathVariable Integer id, Model model) {
         model.addAttribute("id", id);

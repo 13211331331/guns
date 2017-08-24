@@ -17,6 +17,7 @@ import javax.net.ssl.TrustManager;
 import javax.servlet.http.HttpServletRequest;
 
 
+import cn.leiyy.common.wechat.message.menu.MenuList;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import cn.leiyy.common.wechat.message.menu.Menu;
@@ -64,6 +65,34 @@ public class WeixinUtil
 
         return result;
     }
+
+
+    /**
+     * 创建菜单
+     *
+     * @param menu 菜单实例
+     * @param accessToken 有效的access_token
+     * @return 0表示成功，其他值表示失败
+     */
+    public static String createMenuList(MenuList menu, String accessToken) {
+        String result = "0";
+        // 拼装创建菜单的url
+        String url = menu_create_url.replace("ACCESS_TOKEN", accessToken);
+        // 将菜单对象转换成json字符串
+        String jsonMenu;
+        jsonMenu = JSONObject.toJSONString(menu);
+        // 调用接口创建菜单
+        JSONObject jsonObject = httpRequest(url, "POST", jsonMenu);
+        if (null != jsonObject) {
+            if (!jsonObject.getString("errcode").equals("0")) {
+                result = jsonObject.getString("errcode");
+                log.error("创建菜单失败 errcode:{} errmsg:{}", jsonObject.getString("errcode"), jsonObject.getString("errmsg"));
+            }
+        }
+
+        return result;
+    }
+
 
 
     /**

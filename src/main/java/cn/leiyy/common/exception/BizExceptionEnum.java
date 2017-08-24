@@ -43,6 +43,9 @@ public enum BizExceptionEnum {
 	OLD_PWD_NOT_RIGHT(402, "原密码不正确"),
 	TWO_PWD_NOT_MATCH(405, "两次输入密码不一致"),
 
+    ERROR_WECHAT_NO_TOKEN(500,"无法获取微信access_token"),
+
+
 	/**
 	 * 错误的请求
 	 */
@@ -50,6 +53,8 @@ public enum BizExceptionEnum {
 	REQUEST_NULL(400, "请求有错误"),
 	SESSION_TIMEOUT(400, "会话超时"),
 	SERVER_ERROR(500, "服务器异常");
+
+
 
 	BizExceptionEnum(int code, String message) {
 		this.friendlyCode = code;

@@ -54,6 +54,16 @@ Public.openAdd = function () {
     this.layerIndex = index;
 };
 
+Public.uploadWX = function(){
+    //提交信息
+    var ajax = new $ax(Feng.ctxPath + "/public-signal/menu-synch", function(data){
+        Feng.success("同步成功!");
+    },function(data){
+        Feng.error("添加失败!" + data.responseJSON.message + "!");
+    });
+    ajax.start();
+}
+
 /**
  * 点击修改
  */
