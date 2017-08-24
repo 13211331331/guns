@@ -56,7 +56,7 @@ Public.openAdd = function () {
 
 Public.uploadWX = function(){
     //提交信息
-    var ajax = new $ax(Feng.ctxPath + "/public-signal/menu-synch", function(data){
+    var ajax = new $ax(Feng.ctxPath + "/public-signal/menu-synch/"+publicid, function(data){
         Feng.success("同步成功!");
     },function(data){
         Feng.error("添加失败!" + data.responseJSON.message + "!");

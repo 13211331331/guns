@@ -103,11 +103,10 @@ public class WechatMenuServiceImpl extends ServiceImpl<WechatMenuMapper, WechatM
             if(wechatMenuVo.getType().equals(Const.MENU_TYPE_MENU)){
                 ComplexButtonList a = new ComplexButtonList();
                 a.setName(wechatMenuVo.getName());
-               // a.setSub_button(new Button[] { btn32 });
                 List<Button> sub = new ArrayList<Button>();
                 int i = 0;
                 for(WechatMenuVo wechatMenuVo1:vos){
-                    if(wechatMenuVo1.getPid().intValue() == wechatMenuVo.getId().intValue()){
+                    if(wechatMenuVo1.getPid() != null && wechatMenuVo1.getPid().intValue() == wechatMenuVo.getId().intValue()){
                         i++;
                         if(wechatMenuVo1.getType().equals(Const.MENU_TYPE_VIEW)){
                             ViewButton b = new ViewButton();
@@ -151,6 +150,7 @@ public class WechatMenuServiceImpl extends ServiceImpl<WechatMenuMapper, WechatM
         }
 
 
+        menu.setButton(buttons);
         return menu;
     }
 
