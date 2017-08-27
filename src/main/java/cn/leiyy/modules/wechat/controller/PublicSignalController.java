@@ -193,9 +193,7 @@ public class PublicSignalController extends BaseController {
     }
 
 
-    /**
-     * 获取部门的tree列表
-     */
+
     @RequestMapping(value = "/menu-tree")
     @ResponseBody
     public List<ZTreeNode> tree() {

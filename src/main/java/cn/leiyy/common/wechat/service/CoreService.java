@@ -83,19 +83,25 @@ public class CoreService
                 // 取消关注
                 else if (eventType.equals(MessageUtil.EVENT_TYPE_UNSUBSCRIBE)) {
                     // TODO 取消订阅后用户不会再收到公众账号发送的消息，因此不需要回复
+                    respContent = "取消订阅后用户不会再收到公众账号发送的消息";
                 }
                 // 扫描带参数二维码
                 else if (eventType.equals(MessageUtil.EVENT_TYPE_SCAN)) {
                     // TODO 处理扫描带参数二维码事件
+                    respContent = "扫描带参数二维码事件";
                 }
                 // 上报地理位置
                 else if (eventType.equals(MessageUtil.EVENT_TYPE_LOCATION)) {
                     // TODO 处理上报地理位置事件
+                    respContent = "上报地理位置事件";
                 }
                 // 自定义菜单
                 else if (eventType.equals(MessageUtil.EVENT_TYPE_CLICK)) {
                     // TODO 处理菜单点击事件
+                    respContent = "处理菜单点击事件";
+                    respContent += " key:" + requestMap.get("EventKey");
                 }
+
             }
             // 设置文本消息的内容
             textMessage.setContent(respContent);
