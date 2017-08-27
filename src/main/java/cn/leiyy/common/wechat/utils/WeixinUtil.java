@@ -40,6 +40,12 @@ public class WeixinUtil
     // 菜单创建（POST） 限100（次/天）
     public static String menu_create_url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=ACCESS_TOKEN";
 
+    private static String menu_ger_url = "https://api.weixin.qq.com/cgi-bin/menu/get?access_token=ACCESS_TOKEN";
+
+    private static String menu_delete_url = "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=ACCESS_TOKEN";
+
+
+
     /**
      * 创建菜单
      *
@@ -93,6 +99,20 @@ public class WeixinUtil
         return result;
     }
 
+    public static String getMenu(String accessToken){
+        // 拼装创建菜单的url
+        String url = menu_ger_url.replace("ACCESS_TOKEN", accessToken);
+        JSONObject jsonObject = httpRequest(url, "POST",null);
+        return jsonObject.toJSONString();
+    }
+
+
+    public static String deleteMenu(String accessToken){
+        // 拼装创建菜单的url
+        String url = menu_delete_url.replace("ACCESS_TOKEN", accessToken);
+        JSONObject jsonObject = httpRequest(url, "POST",null);
+        return jsonObject.toJSONString();
+    }
 
 
     /**
@@ -263,5 +283,16 @@ public class WeixinUtil
         formatter.close();
         return result;
 
+    }
+
+
+    public static void main(String[] args){
+
+        String appId = "wxc0bb68f91a99b46c";
+        // 第三方用户唯一凭证密钥
+        String appSecret = "2972a0f9b1cb18c35af96d732bbe7b9d";
+
+        System.out.println(getMenu(getAccessToken(appId,appSecret).getToken()));
+        System.out.println(deleteMenu(getAccessToken(appId,appSecret).getToken()));
     }
 }
