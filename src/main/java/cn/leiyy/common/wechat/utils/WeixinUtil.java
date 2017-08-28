@@ -46,6 +46,19 @@ public class WeixinUtil
 
 
 
+    //创建个性化菜单
+    private static String menu_addconditional_url = "https://api.weixin.qq.com/cgi-bin/menu/addconditional?access_token=ACCESS_TOKEN";
+    //删除个性化菜单
+    private static String menu_delconditional_url = "https://api.weixin.qq.com/cgi-bin/menu/delconditional?access_token=ACCESS_TOKEN";
+
+    //测试个性化菜单匹配结果
+    private static String menu_trymatch_url = "https://api.weixin.qq.com/cgi-bin/menu/trymatch?access_token=ACCESS_TOKEN";
+    //获取自定义菜单配置接口
+    private static String menu_get_current_selfmenu_info_url = "https://api.weixin.qq.com/cgi-bin/get_current_selfmenu_info?access_token=ACCESS_TOKEN";
+
+
+
+
     /**
      * 创建菜单
      *
@@ -113,6 +126,36 @@ public class WeixinUtil
         JSONObject jsonObject = httpRequest(url, "POST",null);
         return jsonObject.toJSONString();
     }
+
+    public static String createMenu1(String accessToken,String menu){
+        // 拼装创建菜单的url
+        String url = menu_addconditional_url.replace("ACCESS_TOKEN", accessToken);
+        JSONObject jsonObject = httpRequest(url, "POST",menu);
+        return jsonObject.toJSONString();
+    }
+    public static String deleteMenu1(String accessToken,String menuid){
+        // 拼装创建菜单的url
+        String url = menu_delconditional_url.replace("ACCESS_TOKEN", accessToken);
+        JSONObject jsonObject = httpRequest(url, "POST",menuid);
+        return jsonObject.toJSONString();
+    }
+
+    public static String testMenu1(String accessToken,String data){
+        // 拼装创建菜单的url
+        String url = menu_trymatch_url.replace("ACCESS_TOKEN", accessToken);
+        JSONObject jsonObject = httpRequest(url, "POST",data);
+        return jsonObject.toJSONString();
+    }
+
+    public static String get_current_selfmenu_info(String accessToken){
+        // 拼装创建菜单的url
+        String url = menu_get_current_selfmenu_info_url.replace("ACCESS_TOKEN", accessToken);
+        JSONObject jsonObject = httpRequest(url, "POST",null);
+        return jsonObject.toJSONString();
+    }
+
+
+
 
 
     /**
@@ -292,7 +335,53 @@ public class WeixinUtil
         // 第三方用户唯一凭证密钥
         String appSecret = "2972a0f9b1cb18c35af96d732bbe7b9d";
 
-        System.out.println(getMenu(getAccessToken(appId,appSecret).getToken()));
-        System.out.println(deleteMenu(getAccessToken(appId,appSecret).getToken()));
+       // System.out.println(getMenu(getAccessToken(appId,appSecret).getToken()));
+        //System.out.println(deleteMenu(getAccessToken(appId,appSecret).getToken()));
+        String menu = "{\n" +
+                " \t\"button\":[\n" +
+                " \t{\t\n" +
+                "    \t\"type\":\"click\",\n" +
+                "    \t\"name\":\"今日歌曲\",\n" +
+                "     \t\"key\":\"V1001_TODAY_MUSIC\" \n" +
+                "\t},\n" +
+                "\t{ \n" +
+                "\t\t\"name\":\"菜单\",\n" +
+                "\t\t\"sub_button\":[\n" +
+                "\t\t{\t\n" +
+                "\t\t\t\"type\":\"view\",\n" +
+                "\t\t\t\"name\":\"搜索\",\n" +
+                "\t\t\t\"url\":\"http://www.soso.com/\"\n" +
+                "\t\t},{\n" +
+                "\t\t\t\"type\":\"click\",\n" +
+                "\t\t\t\"name\":\"赞一下我们\",\n" +
+                "\t\t\t\"key\":\"V1001_GOOD\"\n" +
+                "\t       \t}\n" +
+                "\t\t\t]\n" +
+                " }],\n" +
+                "\"matchrule\":{\n" +
+                "  \"tag_id\":\"\",\n" +
+                "  \"sex\":\"\",\n" +
+                "  \"country\":\"中国\",\n" +
+                "  \"province\":\"\",\n" +
+                "  \"city\":\"\",\n" +
+                "  \"client_platform_type\":\"\",\n" +
+                "  \"language\":\"\"\n" +
+                "  }\n" +
+                "}";
+       // System.out.println(createMenu1(getAccessToken(appId,appSecret).getToken(),menu));
+        String menuid = "{\n" +
+                "\t\"menuid\":\"421352182\"\n" +
+                "}";
+       // System.out.println(deleteMenu1(getAccessToken(appId,appSecret).getToken(),menuid));
+
+
+        String data = "{\n" +
+                "\t\"user_id\":\"o8vIpwVoAtylnkYQz2aT0RJN69mo\"\n" +
+                "}";
+        System.out.println(testMenu1(getAccessToken(appId,appSecret).getToken(),data));
+        System.out.println(get_current_selfmenu_info(getAccessToken(appId,appSecret).getToken()));
+
+
+
     }
 }
